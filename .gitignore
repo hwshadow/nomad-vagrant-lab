@@ -1,4 +1,5 @@
 /.vagrant/
+Vagrantfile
 .DS_Store
 *.log
 *.scratch
