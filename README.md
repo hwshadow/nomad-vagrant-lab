@@ -36,7 +36,7 @@ There are a few things you need to get this going:
 
 To start your Nomad cluster just do this:
 
-* ./cluster_up.sh
+* `./cluster_up.sh`
 
 Now you're running!
 
