@@ -1,9 +1,4 @@
 #!/bin/bash
-if [ ! -f "./Vagrantfile" ]; then
-  echo 'hacking the gibson'
-  cat ./Vagrantfile.6node | sed 's/vb.memory = "1516"/vb.memory = "1024"/g' > ./Vagrantfile
-  chmod +x ./launch-*
-fi
 nomad_nodes=$(vagrant ssh-config 2>/dev/null | grep -E '(Host|Port|IdentityFile) ' | xargs -L 3)
 for i in {1..3}; do
   for dc in "a" "b"; do

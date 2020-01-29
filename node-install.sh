@@ -1,4 +1,7 @@
 #!/bin/bash
+dc_letter_code=$(hostname | awk '{print $2}')
+config_region=$(echo $dc_letter_code | sed 's/^a$/east/g;s/^a$/west/g')
+
 # Update the apt packages and get a couple of basic tools
 sudo apt-get update -y
 sudo apt-get install unzip curl vim jq -y
@@ -41,7 +44,7 @@ fi
 sudo mv /tmp/nomad /tmp/archive/nomad
 sudo mkdir -p /etc/nomad.d
 sudo chmod a+w /etc/nomad.d
-sudo cp /vagrant/nomad-config/nomad-server-west.hcl /etc/nomad.d/
+sudo cp /vagrant/nomad-config/nomad-server-$config_region.hcl /etc/nomad.d/
 
 echo "Consul Install Beginning..."
 # Uncommend the first and comment the second line to get the latest edition
@@ -61,7 +64,7 @@ fi
 sudo mv /tmp/consul /tmp/archive/consul
 sudo mkdir -p /etc/consul.d
 sudo chmod a+w /etc/consul.d
-sudo cp /vagrant/consul-config/consul-server-west.hcl /etc/consul.d/
+sudo cp /vagrant/consul-config/consul-server-$config_region.hcl /etc/consul.d/
 
 for bin in cfssl cfssl-certinfo cfssljson
 do

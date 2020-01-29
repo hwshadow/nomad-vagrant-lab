@@ -1,9 +1,8 @@
 #!/bin/bash
-
-cd $HOME
 dc_letter_code=$(hostname | awk '{print $2}')
 config_region=$(echo $dc_letter_code | sed 's/^a$/east/g;s/^a$/west/g')
 
+cd $HOME
 
 # Form Consul Cluster
 ps -C consul
