@@ -1,6 +1,6 @@
 #!/bin/bash
 dc_letter_code=$(hostname | awk '{print $2}')
-config_region=$(echo $dc_letter_code | sed 's/^a$/east/g;s/^a$/west/g')
+config_region=$(echo $dc_letter_code | sed 's/^a$/east/g;s/^b$/west/g')
 
 cd $HOME
 
