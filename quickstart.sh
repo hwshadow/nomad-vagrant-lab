@@ -2,7 +2,7 @@
 if [ ! -f "./Vagrantfile" ]; then
   echo 'hacking the gibson'
   cat ./Vagrantfile.6node | sed 's/vb.memory = "1516"/vb.memory = "1024"/g' > ./Vagrantfile
-  chmod +x ./launch-* . #just commit to repo
+  chmod +x ./launch-*
 fi
 nomad_nodes=$(vagrant ssh-config 2>/dev/null | grep -E '(Host|Port|IdentityFile) ' | xargs -L 3)
 for i in {1..3}; do
@@ -19,7 +19,7 @@ for i in {1..3}; do
     ident=$(echo $nomad_node_line | grep -Eo 'IdentityFile \S+' | awk '{print $2}')
     echo ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -p $port -i $ident vagrant@localhost
     # NOOP
-    #ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -p $port -i $ident vagrant@localhost -t 'cd /vagrant && ls -l | grep '$suffix'.sh' 2>/dev/null
+    #ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -p $port -i $ident vagrant@localhost -t 'cd /vagrant && ls -l | grep launch-daemons.sh' 2>/dev/null
 
     # TEARDOWN
     ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -p $port -i $ident vagrant@localhost -t 'sudo killall consul; sudo killall nomad; sudo rm -rf /tmp/nomad/server; sudo rm -rf /tmp/consul/server' 2>/dev/null
@@ -42,11 +42,15 @@ for i in {1..3}; do
     echo ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -p $port -i $ident vagrant@localhost
     # MANUAL SETUP
     #ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -p $port -i $ident vagrant@localhost
-    #cd /vagrant/; sudo ./$(hostname | sed -e 's/nomad/launch/g').sh; exit
+    #cd /vagrant/; sudo ./launch-daemons.sh; exit
 
     # UPSTART
-    ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -p $port -i $ident vagrant@localhost -t 'cd /vagrant; sudo ./$(hostname | sed -e '"'"'s/nomad/launch/g'"'"').sh' 2>/dev/null
+    ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -p $port -i $ident vagrant@localhost -t 'cd /vagrant; sudo ./launch-daemons.sh' 2>/dev/null
     echo ''
   done;
   echo '# sleeping 5'; sleep 5; echo ''
 done;
+
+#from 172.16.1.201
+#nomad server join 172.16.1.101
+#consul join -wan 172.16.1.101
