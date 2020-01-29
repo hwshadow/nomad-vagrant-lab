@@ -21,14 +21,17 @@ There are a few things you need to get this going:
 
 ## How to use the Nomad lab configuration
 
-### For 3-node clusters you must rename `Vagrantfile.3node` to `Vagrantfile`
-### For 6-node (two region) clusters you must rename `Vagrantfile.6node` to `Vagrantfile`
 
 * Clone this repo (or fork it of you so desire and want to contribute to it)
 
 * Change directory and run a `vagrant status` to check the dependencies are met
 
-* ./render_vagrantfile.sh to select `Vagrantfile.6node` (sed away to fit your system)
+* `./render_vagrantfile.sh` to select `Vagrantfile.6node` (sed away to fit your system)
+```
+if desired, you can manually `cp ./Vagrantfile.Nnode ./Vagrantfile`
+For 3-node clusters you must rename `Vagrantfile.3node` to `Vagrantfile`
+For 6-node (two region) clusters you must rename `Vagrantfile.6node` to `Vagrantfile`
+```
 
 * Run a `vagrant up` command and watch the magic happen! (spoiler alert: it's not magic, it's technology)
 
