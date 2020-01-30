@@ -45,7 +45,3 @@ for i in {1..3}; do
   done;
   echo '# sleeping 5'; sleep 5; echo ''
 done;
-
-#from 172.16.1.201
-#nomad server join 172.16.1.101
-#consul join -wan 172.16.1.101

@@ -43,6 +43,13 @@ To start your Nomad cluster just do this:
 
 Now you're running!
 
+To link the clusters
+```
+from 172.16.1.201 #nomad-b-1
+nomad server join 172.16.1.101
+consul join -wan 172.16.1.101
+```
+
 ## Interacting with the Nomad and Consul cluster
 
 Logging into the systems locally can be done
