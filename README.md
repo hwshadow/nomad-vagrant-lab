@@ -26,6 +26,8 @@ There are a few things you need to get this going:
 
 * Change directory and run a `vagrant status` to check the dependencies are met
 
+* Pack a base box `packer_build.sh` this makes it so that you don't have to apt-get install each host
+
 * `./render_vagrantfile.sh` to select `Vagrantfile.6node` (sed away to fit your system)
 ```
 if desired, you can manually `cp ./Vagrantfile.Nnode ./Vagrantfile`
@@ -35,7 +37,7 @@ For 6-node (two region) clusters you must rename `Vagrantfile.6node` to `Vagrant
 
 * Run a `vagrant up` command and watch the magic happen! (spoiler alert: it's not magic, it's technology)
 
-* Each node will able to run Consul and Nomad
+* Each node will able to run Consul and Nomad (servers and clients)
 
 To start your Nomad cluster just do this:
 

@@ -1,0 +1,29 @@
+{
+  "variables": {
+    "home":    "{{env `HOME`}}",
+    "out_dir": "output-box",
+    "name":    "base-host",
+    "box":     "ubuntu-16.04",
+    "repo":    "bento",
+    "version": "201912.15.0"
+  },
+  "builders": [{
+    "type": "virtualbox-ovf",
+    "source_path": "{{user `home`}}/.vagrant.d/boxes/{{user `repo`}}-VAGRANTSLASH-{{user `box`}}/{{user `version`}}/virtualbox/box.ovf",
+    "ssh_username": "vagrant",
+    "ssh_password": "vagrant",
+    "ssh_wait_timeout": "90s",
+    "shutdown_command": "echo 'packer' | sudo -S shutdown -P now"
+  }],
+  "provisioners": [
+    {
+      "type": "shell",
+      "script": "node-install.sh"
+    }
+  ],
+  "post-processors": [{
+    "type": "vagrant",
+    "keep_input_artifact": true,
+    "output": "{{user `out_dir`}}/{{user `name`}}-{{user `repo`}}-{{user `box`}}-{{user `version`}}.box"
+  }]
+}

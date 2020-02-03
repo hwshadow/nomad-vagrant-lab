@@ -3,3 +3,6 @@ Vagrantfile
 .DS_Store
 *.log
 *.scratch
+packer_cache
+output-box
+output-virtualbox-ovf
