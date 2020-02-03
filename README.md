@@ -45,6 +45,10 @@ To start your Nomad cluster just do this:
 
 Now you're running!
 
+Alternatively just run
+
+* `./bootstrap.sh`S to handle all of the above in one command.
+
 To link the clusters
 ```
 from 172.16.1.201 #nomad-b-1
