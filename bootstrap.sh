@@ -3,4 +3,3 @@
 ./render_vagrantfile.sh
 vagrant up
 ./cluster_up.sh
-./launch-daemons.sh
