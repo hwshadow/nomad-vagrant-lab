@@ -15,7 +15,9 @@ This is a great way to get your feet wet with Nomad in a simplified environment 
 
 There are a few things you need to get this going:
 
-* Vagrant
+* Vagrant (hashicorp)
+
+* Packer (hashicorp)
 
 * VirtualBox
 
