@@ -2,6 +2,10 @@
 
 ### Accompanying blog for the initial setup:  https://discoposse.com/2019/11/21/building-a-hashicorp-nomad-cluster-lab-using-vagrant-and-virtualbox/
 ### Pluralsight course - Getting Started with HashiCorp Nomad:  https://app.pluralsight.com/library/courses/hashicorp-nomad-getting-started/table-of-contents
+### Hashipoc
+https://github.com/pete0emerson/hashipoc
+### other hashi nomady things
+https://github.com/jippi/awesome-nomad
 
 ## What is this?
 

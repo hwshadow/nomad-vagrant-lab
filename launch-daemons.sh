@@ -4,6 +4,10 @@ config_region=$(echo $dc_letter_code | sed 's/^a$/east/g;s/^b$/west/g')
 
 cd $HOME
 
+sudo cp /vagrant/dnsmasq-config/dnsmasq.conf /etc/dnsmasq.conf
+sudo cp /vagrant/dnsmasq-config/dnsmasq.consul /etc/dnsmasq.d/10-consul
+sudo service dnsmasq start
+
 # Form Consul Cluster
 ps -C consul
 retval=$?

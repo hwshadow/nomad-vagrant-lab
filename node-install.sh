@@ -23,7 +23,7 @@ sudo add-apt-repository \
 sudo apt-get update -y
 sudo apt-get install -y docker-ce
 #"cluster-store":"consul://127.0.0.1:8500",
-sudo echo '{ "bip":"192.168.125.1/24", "default-address-pools":[{"base":"172.31.0.0/16","size":25},{"base":"192.168.0.0/20","size":26}]}' > /etc/docker/daemon.json
+sudo echo '{ "bip":"192.168.125.1/24", "default-address-pools":[{"base":"172.31.0.0/16","size":25},{"base":"192.168.0.0/20","size":26}], "insecure-registries":["172.16.1.101:5000","172.16.1.102:5000","172.16.1.103:5000","172.16.1.201:5000","172.16.1.202:5000","172.16.1.203:5000"]}' > /etc/docker/daemon.json
 sudo service docker restart
 # Configure Docker to be run as the vagrant user
 sudo usermod -aG docker vagrant
@@ -87,7 +87,11 @@ do
     sudo install /tmp/${bin} /usr/local/bin/${bin}
   fi
 done
-cat /root/.bashrc | grep  "complete -C /usr/bin/nomad nomad"
+
+echo "DNS-masq Install Beginning..."
+sudo apt-get install -y -q dnsmasq
+
+sudo cat /root/.bashrc | grep  "complete -C /usr/bin/nomad nomad"
 retval=$?
 if [ $retval -eq 1 ]; then
   nomad -autocomplete-install
