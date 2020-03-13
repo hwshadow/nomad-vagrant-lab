@@ -22,6 +22,8 @@ sudo add-apt-repository \
       stable"
 sudo apt-get update -y
 sudo apt-get install -y docker-ce
+#"cluster-store":"consul://127.0.0.1:8500",
+sudo echo '{ "bip":"192.168.125.1/24", "default-address-pools":[{"base":"172.31.0.0/16","size":25},{"base":"192.168.0.0/20","size":26}]}' > /etc/docker/daemon.json
 sudo service docker restart
 # Configure Docker to be run as the vagrant user
 sudo usermod -aG docker vagrant
@@ -65,6 +67,15 @@ sudo mv /tmp/consul /tmp/archive/consul
 sudo mkdir -p /etc/consul.d
 sudo chmod a+w /etc/consul.d
 #sudo cp -r /vagrant/consul-config/consul-server-$config_region.hcl /etc/consul.d/consul-server-$config_region.hcl
+
+echo "Consul-template Install Beginning..."
+sudo curl -sSL https://releases.hashicorp.com/consul-template/0.24.1/consul-template_0.24.1_linux_amd64.zip > consul-tmpl.zip
+if [ ! -d consul-tmpl ]; then
+  sudo unzip /tmp/consul-tmpl.zip
+fi
+if [ ! -f /usr/bin/consul-template ]; then
+  sudo install consul-template /usr/bin/consul-template
+fi
 
 for bin in cfssl cfssl-certinfo cfssljson
 do
