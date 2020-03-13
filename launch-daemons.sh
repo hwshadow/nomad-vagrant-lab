@@ -4,9 +4,14 @@ config_region=$(echo $dc_letter_code | sed 's/^a$/east/g;s/^b$/west/g')
 
 cd $HOME
 
+# JIEdits dnsmasq
 sudo cp /vagrant/dnsmasq-config/dnsmasq.conf /etc/dnsmasq.conf
 sudo cp /vagrant/dnsmasq-config/dnsmasq.consul /etc/dnsmasq.d/10-consul
-sudo service dnsmasq start
+sudo service dnsmasq restart
+
+# JIEdits docker
+sudo cp /vagrant/docker-config/daemon.conf /etc/docker/daemon.conf
+sudo service docker restart
 
 # Form Consul Cluster
 ps -C consul
