@@ -10,6 +10,8 @@ if [ ! -d /tmp/archive ]; then
   sudo mkdir /tmp/archive/
 fi
 
+sudo sysctl -w vm.max_map_count=262144
+
 # Install Docker Community Edition
 echo "Docker Install Beginning..."
 sudo apt-get remove docker docker-engine docker.io
@@ -21,6 +23,7 @@ sudo add-apt-repository \
       $(lsb_release -cs) \
       stable"
 sudo apt-get update -y
+sudo echo '{ "bip":"192.168.125.1/24", "default-address-pools":[{"base":"172.31.0.0/16","size":25},{"base":"192.168.0.0/20","size":26}], "insecure-registries":["172.16.1.101:5000","172.16.1.102:5000","172.16.1.103:5000","172.16.1.201:5000","172.16.1.202:5000","172.16.1.203:5000"]}' > /etc/docker/daemon.json
 sudo apt-get install -y docker-ce
 #"cluster-store":"consul://127.0.0.1:8500",
 sudo echo '{ "bip":"192.168.125.1/24", "default-address-pools":[{"base":"172.31.0.0/16","size":25},{"base":"192.168.0.0/20","size":26}], "insecure-registries":["172.16.1.101:5000","172.16.1.102:5000","172.16.1.103:5000","172.16.1.201:5000","172.16.1.202:5000","172.16.1.203:5000"]}' > /etc/docker/daemon.json
