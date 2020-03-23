@@ -10,7 +10,7 @@ if [ ! -d /tmp/archive ]; then
   sudo mkdir /tmp/archive/
 fi
 
-sudo sysctl -w vm.max_map_count=262144
+sudo echo "vm.max_map_count = 262144" >> /etc/sysctl.conf
 
 # Install Docker Community Edition
 echo "Docker Install Beginning..."
@@ -34,7 +34,7 @@ sudo docker --version
 
 echo "Nomad Install Beginning..."
 # For now we use a static version. Set to the latest tested version you want here.
-NOMAD_VERSION=0.9.5
+NOMAD_VERSION=0.10.4
 cd /tmp/
 sudo curl -sSL https://releases.hashicorp.com/nomad/${NOMAD_VERSION}/nomad_${NOMAD_VERSION}_linux_amd64.zip -o nomad.zip
 if [ ! -d nomad ]; then
