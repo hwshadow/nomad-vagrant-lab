@@ -4,6 +4,8 @@ config_region=$(echo $dc_letter_code | sed 's/^a$/east/g;s/^b$/west/g')
 
 cd $HOME
 
+sudo sysctl -w vm.max_map_count=262144
+
 # JIEdits dnsmasq
 sudo cp /vagrant/dnsmasq-config/dnsmasq.conf /etc/dnsmasq.conf
 sudo cp /vagrant/dnsmasq-config/dnsmasq.consul /etc/dnsmasq.d/10-consul
