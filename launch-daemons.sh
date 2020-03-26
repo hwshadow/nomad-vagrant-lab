@@ -11,6 +11,11 @@ sudo cp /vagrant/dnsmasq-config/dnsmasq.conf /etc/dnsmasq.conf
 sudo cp /vagrant/dnsmasq-config/dnsmasq.consul /etc/dnsmasq.d/10-consul
 sudo service dnsmasq restart
 
+sudo mkdir -p /opt/nomad/volumes/elasticsearch
+for i in {1..9}; do
+  sudo mkdir -p /opt/nomad/volumes/generic${i}
+done
+
 # JIEdits docker
 sudo cp /vagrant/docker-config/daemon.conf /etc/docker/daemon.conf
 sudo service docker restart

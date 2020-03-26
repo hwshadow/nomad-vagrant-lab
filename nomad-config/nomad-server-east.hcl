@@ -16,6 +16,32 @@ advertise {
   serf = "{{ GetInterfaceIP `eth1` }}"
 }
 
+host_volume "elasticsearch" {
+  path      = "/opt/nomad/volumes/elasticsearch/"
+  read_only = false
+}
+
+host_volume "generic1" {
+  path      = "/opt/nomad/volumes/generic1/"
+  read_only = false
+}
+host_volume "generic2" {
+  path      = "/opt/nomad/volumes/generic2/"
+  read_only = false
+}
+host_volume "generic3" {
+  path      = "/opt/nomad/volumes/generic3/"
+  read_only = false
+}
+host_volume "generic4" {
+  path      = "/opt/nomad/volumes/generic4/"
+  read_only = false
+}
+host_volume "generic5" {
+  path      = "/opt/nomad/volumes/generic5/"
+  read_only = false
+}
+
 plugin "raw_exec" {
   config {
     enabled = true
