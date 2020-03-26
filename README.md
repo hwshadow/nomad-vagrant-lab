@@ -57,6 +57,10 @@ To start your Nomad cluster just do this:
 
 Now you're running!
 
+### Short road to victory road
+
+* `./nuke.sh` will forcefully destroy your vagrant environment, and the packer image, running `./bootstrap.sh` after nuke will create a new enivornment from scratch (not using a cached vagrant base). You should use this command if you have editted the `node-install.sh` script.
+
 ## Link wan
 To link the clusters
 ```
